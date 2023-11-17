@@ -22,12 +22,12 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
         /**
          * Create autoload file
          */
-        $file = fopen('helpers.php', 'w+');
+        $file = fopen('/bootstrap/helpers.php', 'w+');
         fwrite($file, '<?php '.PHP_EOL);
         /**
          * Get list of existing classes inside specified folder
          */
-        $files = scandir('../application/app/Helpers');
+        $files = scandir('/app/Helpers');
         $existingClasses = [];
         foreach ($files as $filename){
             $className = str_replace('.php', '', $filename);
