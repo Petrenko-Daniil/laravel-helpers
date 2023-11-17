@@ -1,0 +1,18 @@
+{
+  "name": "vendor_name/laravel-helpers",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "danii",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "orchestra/testbench": "^8.15"
+  },
+  "autoload": {
+    "files": [ "src/helpers_autoload.php" ]
+  }
+}
