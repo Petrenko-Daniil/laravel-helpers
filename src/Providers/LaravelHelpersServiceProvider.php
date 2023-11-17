@@ -2,6 +2,8 @@
 
 namespace DanilPetrenko\LaravelHelpers\Providers;
 
+use DanilPetrenko\LaravelHelpers\Console\Commands\GenerateHelpersAutoload;
+
 class LaravelHelpersServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function boot()
