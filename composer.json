@@ -1,12 +1,12 @@
 {
   "name": "danilpetrenko/laravel-helpers",
-  "description": "description",
+  "description": "Package for generating helper functions based on static classes",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
-      "name": "danii",
-      "email": "email@example.com"
+      "name": "Danil Petrenko",
+      "email": "daniilpetrenkohelp@gmail.com"
     }
   ],
   "require": {
@@ -14,5 +14,10 @@
     "illuminate/console": ">=9",
     "illuminate/support": ">=9",
     "symfony/var-dumper": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DanilPetrenko\\LaravelHelpers\\": "src/"
+    }
   }
 }
