@@ -1,5 +1,6 @@
-**LaravelHelpers package lets you write your helpers using static class methods and then use them whereever you want in Laravel helpers style**
-Installation:
+### LaravelHelpers package lets you write your helpers using static class methods and then use them whereever you want in Laravel helpers style
+
+#### Installation:
 
     composer require daniilpetrenko/laravel-helpers
     php artisan vendor:publish
