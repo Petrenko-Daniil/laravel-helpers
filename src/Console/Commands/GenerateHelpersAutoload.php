@@ -3,6 +3,9 @@
 namespace DanilPetrenko\LaravelHelpers\Console\Commands;
 
 use Illuminate\Support\Facades\Config;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionMethod;
 
 class GenerateHelpersAutoload extends \Illuminate\Console\Command
 {
