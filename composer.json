@@ -10,7 +10,10 @@
     }
   ],
   "require": {
-    "orchestra/testbench": "^8.15"
+    "php": ">=7.4",
+    "illuminate/console": ">=9",
+    "illuminate/support": ">=9",
+    "symfony/var-dumper": "*"
   },
   "autoload": {
     "files": [ "src/helpers_autoload.php" ]
