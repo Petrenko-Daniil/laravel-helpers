@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Config;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
+use ReflectionNamedType;
+use ReflectionUnionType;
 
 class GenerateHelpersAutoload extends \Illuminate\Console\Command
 {
@@ -30,9 +32,6 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
         /**
          * Get list of existing classes inside specified folder
          */
-        if (!file_exists('app/Helpers')){
-            mkdir('app/Helpers', 0777, true);
-        }
         $files = scandir('app/Helpers');
         $existingClasses = [];
         foreach ($files as $filename){
@@ -72,7 +71,7 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
                         }
                         $parametersList .= '$'.$parameter->getName();
                         if($parameter->getType()){
-                            $functionDeclaration .= $parameter->getType()->getName().' ';
+                            $functionDeclaration .= $this->getStringType($parameter->getType()).' ';
                         }
                         $functionDeclaration .= '$'.$parameter->getName();
                         if ($parameter->isDefaultValueAvailable()){
@@ -93,11 +92,11 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
                      * return type is required, otherwise void will be set.
                      */
                     if ($method->getReturnType()){
-                        $functionDeclaration .= ': '.$method->getReturnType()->getName();
+                        $functionDeclaration .= ': '.$this->getStringType($method->getReturnType());
                     } else {
                         $functionDeclaration .= ': void';
                     }
-                    $hasReturn = ($method->getReturnType() && !($method->getReturnType()->getName() == 'void'));
+                    $hasReturn = ($this->getStringType($method->getReturnType()) && !($this->getStringType($method->getReturnType()) == 'void'));
                     /**
                      * Static method is called
                      */
@@ -115,5 +114,12 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
         $this->info('Available helpers: ');
         \Symfony\Component\VarDumper\VarDumper::dump($declaredFunctionNames);
         $this->info('Add /bootstrap/helpers.php to composer autoload');
+    }
+
+    private function getStringType(ReflectionNamedType|ReflectionUnionType $type):string
+    {
+        if ($type instanceof \ReflectionNamedType)
+            return $type->getName();
+        return implode('|', $type->getTypes());
     }
 }
