@@ -1,5 +1,7 @@
 <?php
 
+namespace DanilPetrenko\LaravelHelpers\Console\Commands;
+
 use Illuminate\Support\Facades\Config;
 
 class GenerateHelpersAutoload extends \Illuminate\Console\Command

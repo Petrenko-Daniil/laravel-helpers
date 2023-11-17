@@ -1,5 +1,7 @@
 <?php
 
+namespace DanilPetrenko\LaravelHelpers\Providers;
+
 class LaravelHelpersServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function boot()
