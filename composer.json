@@ -22,7 +22,7 @@
   },
   "extra": {
     "laravel": {
-      "providers": "DaniilPetrenko\\LaravelHelpers\\LaravelHelpersServiceProvider"
+      "providers": "DanilPetrenko\\LaravelHelpers\\LaravelHelpersServiceProvider"
     }
   }
 }
