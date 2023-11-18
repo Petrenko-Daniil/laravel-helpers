@@ -2,7 +2,7 @@
 
 #### Installation:
 
-    composer require daniilpetrenko/laravel-helpers
+    composer require danilpetrenko/laravel-helpers
     php artisan vendor:publish
 You can create ***Helpers*** folder inside your ***app*** folder and then start writing helpers
 Note that you must always specify return type of your static method, otherwise no return will be provided
