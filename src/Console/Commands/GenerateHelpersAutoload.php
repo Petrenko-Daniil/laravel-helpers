@@ -57,7 +57,8 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
                     //preparing function declaration
                     $parametersList = '';
                     $functionDeclaration = ''
-                        .$method->getDocComment().PHP_EOL
+                        .$method->getDocComment().PHP_EOL.
+                        'if(!function_exists("'.$method->name.'")){'.PHP_EOL
                         .'function '.$method->name.'(';
                     foreach ($method->getParameters() as $key=>$parameter){
                         /**
@@ -102,7 +103,7 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
                      */
                     $functionDeclaration .= '{'.PHP_EOL
                         .'  '.($hasReturn ? 'return ' : '').$class.'::'.$method->getName().'('.$parametersList.');'.PHP_EOL
-                        .'}'.PHP_EOL;
+                        .'}'.PHP_EOL.'}'.PHP_EOL;
                     fwrite($file, $functionDeclaration);
                     $declaredFunctionNames[] = $method->getName();
                 }
@@ -116,8 +117,10 @@ class GenerateHelpersAutoload extends \Illuminate\Console\Command
         $this->info('Add /bootstrap/helpers.php to composer autoload');
     }
 
-    private function getStringType(ReflectionNamedType|ReflectionUnionType $type):string
-    {
+    private function getStringType(ReflectionNamedType|ReflectionUnionType|null $type):string
+    {   if ($type == null){
+        return false;
+    }
         if ($type instanceof \ReflectionNamedType)
             return $type->getName();
         return implode('|', $type->getTypes());

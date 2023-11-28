@@ -12,6 +12,10 @@ ExampleHelper:
 	{  
 	  return (int)$number/5;  
 	}
+Then you're supposed to run command
+
+    php artisan generate-helpers-autoload
+
 will generate following function inside ***bootstrap/helpers.php***:
 
     function divideByFive(int $number): int{  
